@@ -1,0 +1,21 @@
+@startuml
+
+actor user as "User"
+participant fe as "Frontend" #powderblue
+participant be as "Backend" #powderblue
+
+title Send equation string to api
+
+activate user
+    user -> fe : Type equation via buttons
+        activate fe
+        fe -> be: api/calculate (POST)
+        be -> fe: Response With result
+        fe -> user: response
+
+        alt any error happend while parsing equation
+            be -> fe: Response With error
+            fe -> user: Alert with errors
+        end
+
+@enduml

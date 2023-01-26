@@ -1,0 +1,27 @@
+@startuml
+
+node "Application" {
+
+ package "Frontend" {
+    [Calculator UI]
+    [Calculator Class]
+    [API helper]
+ }
+ package "Laravel" {
+  [Router]
+ }
+
+ package "Api" {
+  [Controller /calculate] <--> [Calculator Processor]
+ }
+
+[Router] <--> [Controller /calculate]
+[Router] <--> [Calculator UI]
+[Router] <--> [API helper]
+[Calculator UI] <--> [Calculator Class]
+[API helper] <--> [Calculator Class]
+
+}
+
+
+@enduml
